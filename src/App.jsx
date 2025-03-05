@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import * as Yup from 'yup';
+// import { useId } from 'react';
+// import * as Yup from 'yup';
 
 import './App.css';
 import ContactForm from './components/ContactForm/ContactForm';
@@ -15,13 +16,26 @@ const initialContacts = [
 
 function App() {
   const [contacts, setContacts] = useState(initialContacts);
+  const [filter, setFilter] = useState('');
+  const addContact = newContact => {
+    setContacts(prevContacts => [...prevContacts, newContact]);
+  };
+  const deleteContact = id => {
+    setContacts(prevContacts =>
+      prevContacts.filter(contact => contact.id !== id)
+    );
+  };
   return (
     <>
       <div>
         <h1>Phonebook</h1>
-        <ContactForm />
-        <SearchBox />
-        <ContactList contacts={contacts} />
+        <ContactForm onAddContact={addContact} />
+        <SearchBox filter={filter} onFilterChange={setFilter} />
+        <ContactList
+          contacts={contacts}
+          filter={filter}
+          onDeleteContact={deleteContact}
+        />
       </div>
     </>
   );

@@ -1,8 +1,13 @@
-export default function SearchBox() {
+export default function SearchBox({ filter, onFilterChange }) {
   return (
     <div>
-      <p>Find conacts be name </p>
-      <input type="text" />
+      {/* <p>Find conacts be name </p> */}
+      <input
+        type="text"
+        placeholder="Find conacts be name"
+        value={filter}
+        onChange={e => onFilterChange(e.target.value)}
+      />
     </div>
   );
 }

@@ -1,9 +1,19 @@
 import Contact from './Contact';
-export default function ContactList({ contacts }) {
+export default function ContactList({ contacts, filter, onDeleteContact }) {
+  const normalizedFilter = filter.toLowerCase();
+  const visibleContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().startsWith(normalizedFilter)
+  );
   return (
     <ul>
-      {contacts.map(({ id, name, number }) => (
-        <Contact key={id} name={name} number={number} />
+      {visibleContacts.map(contact => (
+        <Contact
+          key={contact.id}
+          id={contact.id}
+          name={contact.name}
+          number={contact.number}
+          onDelete={onDeleteContact}
+        />
       ))}
     </ul>
   );
