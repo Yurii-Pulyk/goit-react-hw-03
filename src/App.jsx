@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // import { useId } from 'react';
 // import * as Yup from 'yup';
 
@@ -18,10 +18,13 @@ const initialContacts = [
 function App() {
   const [contacts, setContacts] = useState(() => {
     const savedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return savedContacts ? JSON.parse(sevedContacts) : initialContacts;
+    return savedContacts ? JSON.parse(savedContacts) : initialContacts;
   });
 
   const [filter, setFilter] = useState('');
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts));
+  }, [contacts]);
   const addContact = newContact => {
     setContacts(prevContacts => [...prevContacts, newContact]);
   };
