@@ -6,6 +6,7 @@ import './App.css';
 import ContactForm from './components/ContactForm/ContactForm';
 import SearchBox from './components/SearchBox/SearchBox';
 import ContactList from './components/ContactList/ContactList';
+const LOCAL_STORAGE_KEY = 'contacts';
 
 const initialContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -15,7 +16,11 @@ const initialContacts = [
 ];
 
 function App() {
-  const [contacts, setContacts] = useState(initialContacts);
+  const [contacts, setContacts] = useState(() => {
+    const savedContacts = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return savedContacts ? JSON.parse(sevedContacts) : initialContacts;
+  });
+
   const [filter, setFilter] = useState('');
   const addContact = newContact => {
     setContacts(prevContacts => [...prevContacts, newContact]);
