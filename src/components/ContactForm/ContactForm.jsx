@@ -28,14 +28,26 @@ export default function ContactForm({ onAddContact }) {
       onSubmit={handleSubmit}
     >
       {({ errors, touched }) => (
-        <Form>
+        <Form className={css.form}>
           <label htmlFor={nameFieldId}>Name</label>
-          <Field type="text" name="name" id={nameFieldId} />
+          <Field
+            type="text"
+            name="name"
+            id={nameFieldId}
+            className={css.input}
+          />
           {errors.name && touched.name ? <div>{errors.name}</div> : null}
           <label htmlFor={contactFieldId}>Contact</label>
-          <Field type="tel" name="number" id={contactFieldId} />
+          <Field
+            type="tel"
+            name="number"
+            id={contactFieldId}
+            className={css.input}
+          />
           {errors.number && touched.number ? <div>{errors.number}</div> : null}
-          <button type="submit">Add contact</button>
+          <button type="submit" className={css.btn}>
+            Add contact
+          </button>
         </Form>
       )}
     </Formik>

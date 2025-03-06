@@ -1,3 +1,4 @@
+import css from './ContactList.module.css';
 import Contact from './Contact';
 export default function ContactList({ contacts, filter, onDeleteContact }) {
   const normalizedFilter = filter.toLowerCase();
@@ -5,7 +6,7 @@ export default function ContactList({ contacts, filter, onDeleteContact }) {
     contact.name.toLowerCase().startsWith(normalizedFilter)
   );
   return (
-    <ul>
+    <div className={css.contactList}>
       {visibleContacts.map(contact => (
         <Contact
           key={contact.id}
@@ -15,6 +16,6 @@ export default function ContactList({ contacts, filter, onDeleteContact }) {
           onDelete={onDeleteContact}
         />
       ))}
-    </ul>
+    </div>
   );
 }

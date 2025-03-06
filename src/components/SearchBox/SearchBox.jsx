@@ -1,3 +1,4 @@
+import css from './SearchBox.module.css';
 export default function SearchBox({ filter, onFilterChange }) {
   return (
     <div>
@@ -7,6 +8,7 @@ export default function SearchBox({ filter, onFilterChange }) {
         placeholder="Find conacts be name"
         value={filter}
         onChange={e => onFilterChange(e.target.value)}
+        className={css.searchBox}
       />
     </div>
   );
