@@ -7,15 +7,19 @@ export default function ContactList({ contacts, filter, onDeleteContact }) {
   );
   return (
     <div className={css.contactList}>
-      {visibleContacts.map(contact => (
-        <Contact
-          key={contact.id}
-          id={contact.id}
-          name={contact.name}
-          number={contact.number}
-          onDelete={onDeleteContact}
-        />
-      ))}
+      {visibleContacts.length > 0 ? (
+        visibleContacts.map(contact => (
+          <Contact
+            key={contact.id}
+            id={contact.id}
+            name={contact.name}
+            number={contact.number}
+            onDelete={onDeleteContact}
+          />
+        ))
+      ) : (
+        <p>No contacts found.</p>
+      )}
     </div>
   );
 }
